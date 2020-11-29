@@ -1,17 +1,38 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Button @click="open">hello</Button>
+  <hr />
+  <Switch v-model:value="switchValue" />
+  <hr />
+  <Tabs v-model:selected="tabSelected">
+    <Tab title="tab1">内容1</Tab>
+    <Tab title="tab2">内容2</Tab>
+  </Tabs>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import { Button, Switch, Tabs, Tab, Dialog, openDialog } from "wheel-ui-chili";
+import "wheel-ui-chili/dist/lib/wheel.css";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Button,
+    Switch,
+    Tabs,
+    Tab,
+    Dialog,
+  },
+  data() {
+    return {
+      switchValue: false,
+      tabSelected: "tab1",
+    };
+  },
+  methods: {
+    open() {
+      openDialog({ title: "标题", content: "内容" });
+    },
+  },
+};
 </script>
 
 <style>
